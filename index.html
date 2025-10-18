@@ -399,196 +399,6 @@
             background: #667eea;
             color: white;
         }
-
-        /* AI Assistant Button */
-        .ai-fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            z-index: 1000;
-        }
-
-        .ai-fab:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .ai-chat-panel {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            max-height: 500px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            z-index: 999;
-        }
-
-        .ai-chat-panel.active {
-            display: flex;
-        }
-
-        .ai-chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 20px 20px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-chat-header h3 {
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .close-chat {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-        }
-
-        .ai-chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-            max-height: 350px;
-        }
-
-        .message {
-            margin-bottom: 12px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            max-width: 85%;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .message.user {
-            background: #667eea;
-            color: white;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .message.assistant {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .message.error {
-            background: #ffebee;
-            color: #c62828;
-            font-size: 13px;
-        }
-
-        .ai-chat-input {
-            display: flex;
-            gap: 8px;
-            padding: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .ai-chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .ai-chat-input input:focus {
-            border-color: #667eea;
-        }
-
-        .ai-chat-input button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .ai-chat-input button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .api-status {
-            padding: 10px;
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            margin: 10px 15px;
-            border-radius: 5px;
-            font-size: 13px;
-        }
-
-        .mapcode-tool {
-            background: #e3f2fd;
-            padding: 12px;
-            margin: 10px 15px;
-            border-radius: 10px;
-            border-left: 4px solid #2196f3;
-        }
-
-        .mapcode-tool h4 {
-            margin: 0 0 8px 0;
-            color: #1976d2;
-            font-size: 14px;
-        }
-
-        .mapcode-search {
-            display: flex;
-            gap: 8px;
-        }
-
-        .mapcode-search input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 13px;
-        }
-
-        .mapcode-search button {
-            background: #2196f3;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        @media (max-width: 480px) {
-            .ai-chat-panel {
-                width: calc(100vw - 40px);
-                right: 20px;
-                bottom: 90px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1134,72 +944,20 @@
             </div>
         </div>
 
-        <!-- AI Assistant Button -->
-        <button class="ai-fab" onclick="toggleAIChat()" title="AI Travel Assistant">
-            🤖
-        </button>
-
-        <!-- AI Chat Panel -->
-        <div class="ai-chat-panel" id="aiChatPanel">
-            <div class="ai-chat-header">
-                <h3>🤖 AI Travel Assistant</h3>
-                <button class="close-chat" onclick="toggleAIChat()">×</button>
-            </div>
-            
-            <div class="api-status" id="apiStatus">
-                ⚠️ API Key not configured.
-                <div style="margin-top: 10px; font-size: 12px; background: white; padding: 10px; border-radius: 5px;">
-                    <strong>Manual Setup (Open Browser Console):</strong><br>
-                    Press F12 → Console tab → Paste:<br>
-                    <code style="display: block; margin-top: 5px; padding: 5px; background: #f5f5f5; font-family: monospace; font-size: 11px;">
-                    localStorage.setItem('claudeAPIKey', 'YOUR_API_KEY_HERE')
-                    </code>
-                    Then refresh the page.
-                </div>
-            </div>
-
-            <div class="mapcode-tool">
-                <h4>🗺️ Japan Mapcode Search</h4>
-                <div class="mapcode-search">
-                    <input type="text" id="mapcodeInput" placeholder="Enter address or mapcode...">
-                    <button onclick="searchMapcode()">Search</button>
-                </div>
-            </div>
-
-            <div class="ai-chat-messages" id="chatMessages">
-                <div class="message assistant">
-                    Hi! I'm your AI travel assistant for your Osaka trip. I can help you with:
-                    <br><br>
-                    • Travel tips and recommendations<br>
-                    • Restaurant suggestions<br>
-                    • Transportation advice<br>
-                    • Cultural information<br>
-                    • Emergency phrases in Japanese<br>
-                    <br>
-                    What would you like to know?
-                </div>
-            </div>
-
-            <div class="ai-chat-input">
-                <input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="handleEnter(event)">
-                <button id="sendBtn" onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-
     </div>
 
     <script>
         let currentDay = -1;
         const totalDays = 9;
-        let claudeAPIKey = localStorage.getItem('claudeAPIKey') || '';
-        let conversationHistory = [];
-
-        // Check API key on load
-        if (claudeAPIKey) {
-            document.getElementById('apiStatus').innerHTML = '✅ API Key configured. Ready to chat!';
-        }
 
         function goToDay(dayNum) {
+            document.getElementById('coverPage').classList.add('hidden');
+            document.getElementById('dayIndicator').classList.remove('hidden');
+            createDayDots();
+            showDay(dayNum);
+        }
+
+        function startTrip() {
             document.getElementById('coverPage').classList.add('hidden');
             document.getElementById('dayIndicator').classList.remove('hidden');
             createDayDots();
@@ -1376,7 +1134,12 @@
             }
             
             currentDay = dayNum;
-            window.scrollTo(0, 0);
+            
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         function nextDay() {
@@ -1393,23 +1156,36 @@
 
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
 
         document.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         });
 
         document.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         });
 
         function handleSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                nextDay();
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                prevDay();
+            const swipeThresholdX = 50;
+            const swipeThresholdY = 100; // Minimum horizontal swipe distance
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            
+            // Only trigger if horizontal swipe is more significant than vertical
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThresholdX) {
+                if (deltaX < 0) {
+                    // Swipe left - next day
+                    nextDay();
+                } else {
+                    // Swipe right - previous day
+                    prevDay();
+                }
             }
         }
 
